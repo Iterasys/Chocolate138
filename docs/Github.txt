@@ -1,0 +1,20 @@
+Gerenciamento de Configurações
+- Manter os ativos do projeto seguros (Backup)
+- Organizados para uso (Continuidade)
+- Controle de acesso (Privacidade)
+- Controle de versão (Resiliencia)
+Existe uma profissão: SCM - Software Configuration Management
+
+GitHub é um repositório com versionamento
+É um produto da Microsoft
+
+Successfully created project 'Chocolate138' on GitHub,
+but initial commit failed: Author identity unknown
+*** Please tell me who you are. Run
+
+git config --global user.email "contato@iterasys.com.br"
+git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+unable to auto-detect email address (got 'Avell@Avell.(none)')
