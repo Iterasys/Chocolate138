@@ -19,7 +19,7 @@ public class Account {
     String jsonBody; // guardar o json que será enviado
     String uri = "https://bookstore.toolsqa.com/Account/v1/"; // Endereço Base
     Response resposta; // guardar o retorno da API
-    String token; // guardar o token - autenticação do usuário
+    static String token; // guardar o token - autenticação do usuário
 
     // 3.1.2 Instanciar Classes Externas
     Gson gson = new Gson(); // Instancia o objeto de conversão classe para json
@@ -31,7 +31,7 @@ public class Account {
     public void testCreateUser(){
         // Arrange - Configura
 
-        account.userName = "charlie189"; // entrada e saida (resultado esperado)
+        account.userName = "charlie190"; // entrada e saida (resultado esperado)
         account.password = "P@ss0rd1"; // entrada
 
         jsonBody = gson.toJson(account);  // Converte a entidade usuario no formato json
@@ -163,6 +163,26 @@ public class Account {
                 .body("userId", is(userId))
                 .body("username", is(account.userName)) // Valida o nome do usuário
         ;                                           // Conclui o bloco do REST-assured
+    }
+    @Test(priority = 20)
+    public void testDeleteUser(){
+        // Configura
+        // Dados de entrada vem do método de teste da criação do usuário (userId)
+        // Resultado esperado é o código e mensagem de sucesso na exclusão do usuário
+
+        // Executa
+        given()
+                .log().all()
+                .contentType(ct)
+                .header("Authorization", "Bearer " + token)
+        .when()
+                .delete(uri + "User/" + userId)
+        // Valida
+        .then()
+                .log().all()
+                .statusCode(204)
+        ;
+
     }
 
 }
