@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import entities.AccountEntity;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -63,7 +64,7 @@ public class Account {
     } // fim do método de criação de usuário
 
     @Test(priority = 2)
-    public void testGenerateToken(){
+    public void testGenerateToken(ITestContext context){
         // Configura
         // --> Dados de Entrada são fornecidos pela AccountEntity
         // --> Resultado Esperado é que ele receba um token
@@ -85,6 +86,7 @@ public class Account {
 
         // Extração do Token
         token = resposta.jsonPath().getString("token");
+        context.setAttribute("token", token);
         System.out.println("token: " + token);
 
         // Valida
