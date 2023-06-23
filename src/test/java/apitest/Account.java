@@ -6,6 +6,7 @@ import entities.AccountEntity;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
@@ -29,11 +30,11 @@ public class Account {
 
     // Método #1 - Criar Usuário
     @Test(priority = 1)
-    public void testCreateUser(){
+    public void testCreateUser(ITestContext context){
         // Arrange - Configura
 
         account.userName = "charlie190"; // entrada e saida (resultado esperado)
-        account.password = "P@ss0rd1"; // entrada
+        account.password = "P@ss0rd1!1"; // entrada
 
         jsonBody = gson.toJson(account);  // Converte a entidade usuario no formato json
 
@@ -58,6 +59,8 @@ public class Account {
         // extrair o userID (identificação do usuário)
 
         userId = resposta.jsonPath().getString("userID");
+        context.setAttribute("userId", userId);
+        context.setAttribute("username", account.userName);
         System.out.println("UserID extraido: " + userId);
 
 
@@ -86,7 +89,7 @@ public class Account {
 
         // Extração do Token
         token = resposta.jsonPath().getString("token");
-        context.setAttribute("token", token);
+        context.setAttribute("token", resposta.jsonPath().getString("token"));
         System.out.println("token: " + token);
 
         // Valida
@@ -166,7 +169,8 @@ public class Account {
                 .body("username", is(account.userName)) // Valida o nome do usuário
         ;                                           // Conclui o bloco do REST-assured
     }
-    @Test(priority = 20)
+
+    @AfterSuite
     public void testDeleteUser(){
         // Configura
         // Dados de entrada vem do método de teste da criação do usuário (userId)

@@ -4,13 +4,14 @@
     <test name="Testing Account">
         <classes>
             <class name="apitest.Account" />
-        </classes>
-    </test>
-
-    <test name="Testing BookStore">
-        <classes>
             <class name="apitest.BookStore" />
         </classes>
     </test>
+
+    <!--<test name="Testing BookStore">
+        <classes>
+            <class name="apitest.BookStore" />
+        </classes>
+    </test>-->
 
 </suite>
