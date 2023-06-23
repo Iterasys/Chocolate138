@@ -1,18 +1,8 @@
 package entities;
 
 public class BookStoreEntity {
+    String userId;
 
-    public String userId;
-    public ISBN[] collectionOfIsbns;
+    // ToDo: completar o mapeamento dos campos da classe
 
-    public String isbn;
-
-    public static class ISBN {
-
-        public String isbn;
-
-        public ISBN (String isbn) {
-            this.isbn = isbn;
-        }
-    }
 }
