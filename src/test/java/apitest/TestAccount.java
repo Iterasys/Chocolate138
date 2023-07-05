@@ -13,7 +13,7 @@ import static org.hamcrest.Matchers.is;
 
 // 2 - Bibliotecas
 // 3 - Classe
-public class Account {
+public class TestAccount {
     // 3.1 - Atributos
     String userId;
     String ct = "application/json"; // contentType da API
@@ -29,7 +29,7 @@ public class Account {
 
     // Método #1 - Criar Usuário
     @Test(priority = 1)
-    public void testCreateUser(){
+    public void testCreateUser(ITestContext context){
         // Arrange - Configura
 
         account.userName = "charlie191"; // entrada e saida (resultado esperado)
@@ -58,6 +58,7 @@ public class Account {
         // extrair o userID (identificação do usuário)
 
         userId = resposta.jsonPath().getString("userID");
+        context.setAttribute("userID", userId);
         System.out.println("UserID extraido: " + userId);
 
 
