@@ -44,5 +44,4 @@ public class seleniumSimples {
 
     // 3.5 Teste em Si
 
-
 }
