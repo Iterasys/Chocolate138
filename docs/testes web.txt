@@ -46,5 +46,30 @@ Planejamento    Organizar       T. Manual(6h)       T. Manual(6h)       T/D (2h)
 Cri. Aceite     Prep Massa      Abrir defeitos      Abrir defeitos      *****
 
 
+Configurações Iniciais do Selenium WebDriver
+- Importou a biblioteca Selenium WebDriver do www.mvnrepository.com
+- Ajustes e importações da biblioteca e de outros
+- Instalar um driver do navegadores
+
+Código (Biblioteca) ---> Driver -----> Browser
+                      (ChromeDriver)   (Chrome)
+
+Além de existir um driver diferente para cada navegador, alguns desses drivers mudam por versão
+
+Existem diversar formas de instalar o driver:
+1 - baixar o driver e adicionar em uma pasta do projeto
+2 - baixar o driver e publicar em uma pasta central
+3 - usar a biblioteca WebDriverManager
+
+Existem 3 desafios frequentes na automação de teste
+1 - localizadores / seletores / identificadores de elemento
+2 - sincronismo / esperas / wait (temporario / implicitly / explicitly / fluent)
+3 - "Programação Exótica"
+
+
+
+
+
+
 
 
