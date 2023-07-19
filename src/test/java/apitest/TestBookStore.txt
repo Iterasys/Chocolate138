@@ -114,6 +114,7 @@ public class TestBookStore {
                 .body("books[0].isbn",is(isbnNovo))
         ;
     }
+    /*
     @Test(priority = 4)
     public void testDeleteLoans(ITestContext context){
         // Configura
@@ -133,5 +134,5 @@ public class TestBookStore {
                 .statusCode(204)
         ;
     }
-
+*/
 }

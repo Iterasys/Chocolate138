@@ -9,7 +9,7 @@
 #      Quando clica no produto "Sauce Labs Backpack"
 
   Feature: Select Product in Store
-    Scenario: Selecting Product with Sucess
+    Scenario: Selecting Product with Success
       Given I access SauceDemo store
       When I filled a user "standard_user" and password "secret_sauce"
       And I click in Login
