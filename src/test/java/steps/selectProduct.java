@@ -1,7 +1,11 @@
 package steps;
 
+
+
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeAll;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,9 +21,11 @@ import java.time.Duration;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+
 public class selectProduct {
     // Atributos
     static WebDriver driver;
+    static String userForCookie;
 
     @BeforeAll // Executa antes de todos os blocos de passos --> usar do Cucumber
     public static void before_all(){
@@ -34,7 +40,11 @@ public class selectProduct {
     }
 
     @AfterAll // Executa após todos os blocos de passos --> usar do Cucumber
-    public static void after_all(){
+    public static void after_all() throws InterruptedException {
+        // Antes de finalizar o teste, aproveitamos que ainda estamos na página do carrinho de compras
+        // para remover o produto
+        driver.findElement(By.cssSelector("button.btn.btn_secondary.btn_small.cart_button")).click();
+        Thread.sleep(3000); // ToDo: remover após confirmar se é um problema de sincronismo
         driver.quit();                                    // Encerrar o objeto do Selenium WebDriver
     }
 
@@ -47,12 +57,14 @@ public class selectProduct {
     public void i_filled_a_user_and_password(String user, String password) {
         driver.findElement(By.id("user-name")).sendKeys(user); // escreve o conteúdo da váriavel user
         driver.findElement(By.id("password")).sendKeys(password); // escreve o conteúdo da variável password
+
+        userForCookie = user; // guardar o usuário para apagar o cookie no final
     }
     @And("I click in Login")
     public void i_click_in_login() {
         driver.findElement(By.id("login-button")).click(); // clica no botão Login
     }
-    @Then("show page's title {string}")
+    // @Then("show page's title {string}")
     @Then("I verify the page's title {string}")
     public void show_page_s_title(String pageTitle) {
         // Verifica se o titulo da página coincide com o informado na feature
@@ -77,12 +89,13 @@ public class selectProduct {
     @And("I verify the product price {string}")
     public void i_verify_the_product_price(String productPrice) {
         // Verifica se o preço do produto corresponde ao informado na feature
-        assertEquals(driver.findElement(By.id("div.inventory_details_price")).getText(), productPrice);
+        assertEquals(driver.findElement(By.cssSelector("div.inventory_details_price")).getText(), productPrice);
     }
     @And("I click in Add to Cart")
     public void i_click_in_add_to_cart() {
         // Clica no botão de adicionar no carrinho
-        driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        // driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+        driver.findElement(By.cssSelector("button.btn.btn_primary.btn_small.btn_inventory")).click();
     }
     @And("I click in Cart icon")
     public void i_click_in_cart_icon() {
@@ -94,6 +107,17 @@ public class selectProduct {
     public void i_verify_the_quantity_is(String quantity) {
         // Verifica se a quantidade corresponde a feature
         assertEquals(driver.findElement(By.cssSelector("div.cart_quantity")).getText(), quantity);
+    }
+
+    @Then("I verify the product title {string} in cart")
+    public void i_verify_the_product_title_in_cart(String productTitle) {
+        assertEquals(driver.findElement(By.cssSelector("div.inventory_item_name")).getText(),
+                productTitle);
+    }
+
+    @Then("I verify the product price {string} in cart")
+    public void i_verify_the_product_price_in_cart(String productPrice) {
+        assertEquals(driver.findElement(By.cssSelector("div.inventory_item_price")).getText(), productPrice);
     }
 
 }
