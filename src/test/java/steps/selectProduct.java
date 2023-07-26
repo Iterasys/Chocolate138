@@ -13,10 +13,13 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
+import java.util.List;
+
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -43,8 +46,10 @@ public class selectProduct {
     public static void after_all() throws InterruptedException {
         // Antes de finalizar o teste, aproveitamos que ainda estamos na página do carrinho de compras
         // para remover o produto
+        //Thread.sleep(3000);
         driver.findElement(By.cssSelector("button.btn.btn_secondary.btn_small.cart_button")).click();
-        Thread.sleep(3000); // ToDo: remover após confirmar se é um problema de sincronismo
+
+        //Thread.sleep(5000);
         driver.quit();                                    // Encerrar o objeto do Selenium WebDriver
     }
 
@@ -110,9 +115,17 @@ public class selectProduct {
     }
 
     @Then("I verify the product title {string} in cart")
-    public void i_verify_the_product_title_in_cart(String productTitle) {
+    public void i_verify_the_product_title_in_cart(String productTitle) throws InterruptedException {
+
+        List<WebElement> lista = driver.findElements(By.cssSelector("div.inventory_item_name"));
+
+        for (int i = 1; i < lista.size(); i++) {
+            driver.findElement(By.cssSelector("button.btn.btn_secondary.btn_small.cart_button")).click();
+        }
+
         assertEquals(driver.findElement(By.cssSelector("div.inventory_item_name")).getText(),
                 productTitle);
+        Thread.sleep(2000);
     }
 
     @Then("I verify the product price {string} in cart")
