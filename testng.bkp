@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite de Testes" verbose="1" >
+    <test name="Testing Account">
+        <classes>
+            <class name="apitest.Account" />
+            <class name="apitest.BookStore" />
+        </classes>
+    </test>
+
+    <!--<test name="Testing BookStore">
+        <classes>
+            <class name="apitest.BookStore" />
+        </classes>
+    </test>-->
+
+</suite>
