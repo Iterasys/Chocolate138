@@ -17,6 +17,8 @@ dependencies {
     implementation("io.cucumber:cucumber-testng:7.13.0")
     implementation("io.github.bonigarcia:webdrivermanager:5.4.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("io.cucumber:cucumber-picocontainer:7.11.2")
+
 
 
 }

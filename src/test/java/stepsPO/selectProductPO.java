@@ -22,13 +22,14 @@ public class selectProductPO {
     private InventoryPage inventoryPage;
 
     // Construtor
-    public selectProductPO(BasePage basePage){
-        this.driver = basePage.driver;  // passagem de bola = integração Selenium dentro e fora
+    public selectProductPO(Base base){
+        this.driver = base.driver;  // passagem de bola = integração Selenium dentro e fora
     }
 
     @Given("I access SauceDemo store PO")
     public void i_access_sauce_demo_store() {
         driver.get("https://www.saucedemo.com");
+        this.homePage = new HomePage(this.driver);
     }
 
     @When("I filled a user {string} and password {string} PO")
@@ -38,6 +39,7 @@ public class selectProductPO {
     @And("I click in Login PO")
     public void i_click_in_login() {
         homePage.clicarNoBotaoLogin();
+        inventoryPage = new InventoryPage(this.driver);
     }
     // @Then("show page's title {string}")
     @Then("I verify the page's title {string} PO")
@@ -54,6 +56,7 @@ public class selectProductPO {
     public void i_click_in_product(String productId) {
         // Clica no elemento correspondente ao código do produto informado na feature
         inventoryPage.clicarNoTituloDoProduto(productId);
+        inventoryItemPage = new InventoryItemPage(this.driver);
     }
     @Then("I verify the product title {string} PO")
     public void i_verify_the_product_title(String productTitle) {
@@ -75,6 +78,7 @@ public class selectProductPO {
     public void i_click_in_cart_icon() {
         // Clica no icone do carrinho de compras
        inventoryPage.clicarNoCarrinho();
+       cartPage = new CartPage(this.driver);
     }
 
     @And("I verify the quantity is {string} PO")

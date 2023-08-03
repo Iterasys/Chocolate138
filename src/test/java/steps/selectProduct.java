@@ -70,8 +70,8 @@ public class selectProduct {
         driver.findElement(By.id("login-button")).click(); // clica no botão Login
     }
     // @Then("show page's title {string}")
-    @Then("I verify the page's title {string}")
-    public void show_page_s_title(String pageTitle) {
+    @Then("show page's title {string}")
+    public void showPageSTitle(String pageTitle) {
         // Verifica se o titulo da página coincide com o informado na feature
         assertEquals(driver.findElement(By.cssSelector("span.title")).getText(), pageTitle);
     }
@@ -133,4 +133,8 @@ public class selectProduct {
         assertEquals(driver.findElement(By.cssSelector("div.inventory_item_price")).getText(), productPrice);
     }
 
+    @Then("I verify the page's title {string}")
+    public void iVerifyThePageSTitle(String pageTitle) {
+        assertEquals(driver.findElement(By.cssSelector("span.title")).getText(), pageTitle);
+    }
 }

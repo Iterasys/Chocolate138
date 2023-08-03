@@ -13,7 +13,7 @@ public class BasePage {
     @FindBy(css = "span.title")
     WebElement lblTituloPagina;
 
-    @FindBy(css = "button.btn btn_primary btn_small btn_inventory")
+    @FindBy(css = "button.btn.btn_primary.btn_small.btn_inventory")
     WebElement btnAdicionarNoCarrinho;
 
     public WebDriver driver;
