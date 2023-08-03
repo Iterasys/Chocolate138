@@ -1,8 +1,8 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="TestNG Cucumber Suite" parallel="none">
     <test name="Teste Cucumber">
-        <packages>
-            <package name="stepsPO" />
-        </packages>
+        <classes>
+            <class name="stepsPO.Runner"/>
+        </classes>
     </test>
 </suite>

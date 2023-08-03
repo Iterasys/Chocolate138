@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class InventoryItemPage extends BasePage{
     // Elementos
-    @FindBy(css = "div.inventory_details_name large_size")
+    @FindBy(css = "div.inventory_details_name.large_size")
     WebElement lblTituloProduto;
 
     @FindBy(css = "div.inventory_details_price")
