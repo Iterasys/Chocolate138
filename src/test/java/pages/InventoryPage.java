@@ -2,11 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class InventoryPage extends BasePage{
+public class InventoryPage extends CommonPage {
     // Mapeamento
 
     // @FindBy(id = "item_4_title_link")
